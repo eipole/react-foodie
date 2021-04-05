@@ -6,7 +6,10 @@ import {
   makeStyles,
   Typography
 } from "@material-ui/core"
-import React from "react"
+import React, { useContext } from "react"
+import { ReceptContext } from "../App"
+import { handleDeleteRecept } from "./functions"
+
 const useStyles = makeStyles((theme) => ({
   headingStyles: {
     display: "flex"
@@ -14,9 +17,13 @@ const useStyles = makeStyles((theme) => ({
   redButton: {
     color: theme.deleteColor
   }
+  /*   rec_list: {
+    whiteSpace: "pre_wrap"
+  } */
 }))
 
-export default function Recept({ name, servings, cookTime, instructions }) {
+export default function Recept({ id, name, servings, cookTime, instructions }) {
+  const { recept, setRecept } = useContext(ReceptContext)
   const classes = useStyles()
   return (
     <>
@@ -24,21 +31,26 @@ export default function Recept({ name, servings, cookTime, instructions }) {
         <Typography variant="h4">{name} </Typography>
         <div>
           <Button color="primary">Edit</Button>
-          <Button className={classes.redButton}>Delete</Button>
+          <Button
+            onClick={() => handleDeleteRecept(id, recept, setRecept)}
+            className={classes.redButton}
+          >
+            Delete
+          </Button>
         </div>
       </div>
       <div>
         <Typography variant="subtitle2">Cook time: {cookTime}</Typography>
       </div>
       <div>
-        <Typography variant="subtitle3">Servings: {servings}</Typography>
+        <Typography variant="subtitle2">Servings: {servings}</Typography>
       </div>
       <div>
-        <Typography variant="subtitle3">Instructions: </Typography>
+        <Typography variant="subtitle2">Instructions: </Typography>
         <List component="ul">
           {instructions.map((elem, i) => {
             return (
-              <ListItem>
+              <ListItem key={i}>
                 <ListItemText primary={elem} />
               </ListItem>
             )

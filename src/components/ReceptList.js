@@ -1,4 +1,4 @@
-import { Button, Card, Container, makeStyles } from "@material-ui/core"
+import { Card, makeStyles } from "@material-ui/core"
 import React from "react"
 import IngredientList from "./IngredientList"
 import Recept from "./Recept"
@@ -19,7 +19,6 @@ export default function ReceptList({ recept }) {
           <Card className={classes.container} key={elem.id}>
             <Recept {...elem} />
             <IngredientList ingredients={elem.ingredients} />
-            <Button color="primary">Add recept</Button>
           </Card>
         )
       })}

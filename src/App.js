@@ -1,19 +1,30 @@
-import { Container, Grid } from "@material-ui/core"
-import React from "react"
+import { Button, Container, Grid } from "@material-ui/core"
+import React, { createContext, useState } from "react"
 import ReceptCompose from "./components/ReceptCompose"
 import ReceptList from "./components/ReceptList"
+import { handleAddRecept } from "./components/functions"
+
+export const ReceptContext = createContext()
+
 function App() {
+  const [recept, setRecept] = useState(sample)
+
   return (
-    <Container>
-      <Grid container spacing={3}>
-        <Grid xs="6" item>
-          <ReceptList recept={sample} />
+    <ReceptContext.Provider value={{ recept, setRecept }}>
+      <Container>
+        <Grid container spacing={3}>
+          <Grid xs={6} item>
+            <ReceptList recept={recept} />
+            <Button color="primary" onClick={() => handleAddRecept(setRecept)}>
+              Add recept
+            </Button>
+          </Grid>
+          <Grid xs={6} item>
+            <ReceptCompose />
+          </Grid>
         </Grid>
-        <Grid xs="6" item>
-          <ReceptCompose />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </ReceptContext.Provider>
   )
 }
 

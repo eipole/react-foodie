@@ -12,6 +12,12 @@ import ComposeIngredients from "./ComposeIngredients"
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(2)
+  },
+  instructions: {
+    paddingTop: theme.spacing(2)
+  },
+  Typography: {
+    paddingTop: theme.spacing(6)
   }
 }))
 
@@ -25,7 +31,9 @@ export default function ReceptCompose() {
       <TextField label="name"></TextField>
       <Typography variant="h5">Servings</Typography>
       <TextField label="name"></TextField>
-      <Typography variant="h5">Instructions:</Typography>
+      <Typography className={classes.instructions} variant="h5">
+        Instructions:
+      </Typography>
       <div>
         <TextareaAutosize rowsMin={5} placeholder="mingi jutt" />
       </div>
