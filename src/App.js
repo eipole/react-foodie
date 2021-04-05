@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Container, Grid } from "@material-ui/core"
+import React from "react"
+import ReceptCompose from "./components/ReceptCompose"
+import ReceptList from "./components/ReceptList"
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      <Grid container spacing={3}>
+        <Grid xs="6" item>
+          <ReceptList recept={sample} />
+        </Grid>
+        <Grid xs="6" item>
+          <ReceptCompose />
+        </Grid>
+      </Grid>
+    </Container>
+  )
 }
 
-export default App;
+const sample = [
+  {
+    id: 1,
+    name: "Fried rice",
+    servings: 3,
+    cookTime: "1:45",
+    instructions: ["frie chiken", "add salt", "eat this"],
+    ingredients: [
+      {
+        id: 1,
+        name: "chicken",
+        amount: "mere en nok"
+      },
+      {
+        id: 2,
+        name: "salt",
+        amount: "en neve"
+      }
+    ]
+  },
+  {
+    id: 2,
+    name: "Good food",
+    servings: 5,
+    cookTime: "3:20",
+    instructions: ["cook pork", "add peppers", "nam nam"],
+    ingredients: [
+      {
+        id: 1,
+        name: "pork",
+        amount: "2 kg"
+      },
+      {
+        id: 2,
+        name: "pepper",
+        amount: "masse"
+      }
+    ]
+  }
+]
+
+export default App
